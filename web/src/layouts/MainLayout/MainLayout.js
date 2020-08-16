@@ -4,7 +4,7 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <header className="header">
-        <h1>dogaffirmations.io</h1>
+        <h1>pawsitivity.io</h1>
         <img src={DogIcon} alt="" className="icon" />
       </header>
       <main className="main">{children}</main>
