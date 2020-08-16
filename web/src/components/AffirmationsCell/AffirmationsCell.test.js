@@ -5,8 +5,7 @@ import { Loading, Failure, Success } from './AffirmationsCell'
 describe('AffirmationsCell', () => {
   it('Loading renders successfully', () => {
     render(<Loading />)
-    // Use screen.debug() to see output.
-    expect(screen.queryByText('Loading...')).toBeInTheDocument()
+    expect(screen.getByAltText('loading')).toBeInTheDocument()
   })
 
   it('Failure renders successfully', () => {
@@ -15,11 +14,11 @@ describe('AffirmationsCell', () => {
   })
 
   it('Success renders successfully', () => {
-    render(
-      <Success userExample={{ affirmations: { objectKey: 'objectValue' } }} />
-    )
-    expect(
-      screen.queryByText('{"affirmations":{"objectKey":"objectValue"}}')
-    ).toBeInTheDocument()
+    const props = { affirmation: { affirmation: 'test' }, dog: { id: 1 } }
+    render(<Success result={props} />)
+    expect(screen.getByAltText('loading')).toBeInTheDocument()
+    expect(screen.getByAltText('Dog')).toBeInTheDocument()
+    expect(screen.getAllByRole('img')).toBeInstanceOf(Array)
+    expect(screen.queryByText('“test”')).toBeInTheDocument()
   })
 })
